@@ -1,6 +1,7 @@
 const btnAddTask = document.querySelector('.app__button--add-task');
 const formTasks = document.querySelector('.app__form-add-task');
 const textArea = document.querySelector('.app__form-textarea');
+const taskArea = document.querySelector('.tasks');
 
 const tarefas = [];
 
@@ -15,6 +16,6 @@ formTasks.addEventListener('submit', (evento) =>{
     }
 
     tarefas.push(tarefa);
-    localStorage.setItem('tarefas', tarefas);
-    
+    localStorage.setItem('tarefas', JSON.stringify(tarefas));
+
 });
