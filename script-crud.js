@@ -3,7 +3,8 @@ const formTasks = document.querySelector('.app__form-add-task');
 const textArea = document.querySelector('.app__form-textarea');
 const taskArea = document.querySelector('.tasks');
 
-const tarefas = [];
+const tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
+
 
 function createTask(tarefa){
     const li = document.createElement('li');
