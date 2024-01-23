@@ -2,6 +2,7 @@ const btnAddTask = document.querySelector('.app__button--add-task');
 const formTasks = document.querySelector('.app__form-add-task');
 const textArea = document.querySelector('.app__form-textarea');
 const taskArea = document.querySelector('.tasks');
+const ulTasks = document.querySelector('.app__section-task-list');
 
 const tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
 
@@ -9,7 +10,7 @@ const tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
 function createTask(tarefa){
     const li = document.createElement('li');
     li.classList.add('app__section-task-list-item');
-    const svg = createTask('svg');
+    const svg = document.createElement('svg');
     svg.innerHTML = `
     <svg class="app__section-task-icon-status" width="24" height="24" viewBox="0 0 24 24" fill="none"
     xmlns="http://www.w3.org/2000/svg">
@@ -19,17 +20,19 @@ function createTask(tarefa){
 </svg>
     `
 
-    const paragrafo = createElement('p')
+    const paragrafo = document.createElement('p')
     paragrafo.textContent = tarefa.descricao;
 
-    const botao = createElement('button');
-    const botaoImg = createElement('img');
+    const botao = document.createElement('button');
+    const botaoImg = document.createElement('img');
     botaoImg.setAttribute('src', '/imagens/edit.png')
     botao.append(botaoImg);
 
     li.append(svg);
     li.append(paragrafo);
     li.append(botao);
+
+    return li;
 } 
 
 btnAddTask.addEventListener('click', () =>{
@@ -44,4 +47,11 @@ formTasks.addEventListener('submit', (evento) =>{
 
     tarefas.push(tarefa);
     localStorage.setItem('tarefas', JSON.stringify(tarefas));
+});
+
+tarefas.forEach(tarefa => {
+
+    const elementoTarefa = createTask(tarefa);
+    ulTasks.append(elementoTarefa)
+
 });
