@@ -6,6 +6,10 @@ const ulTasks = document.querySelector('.app__section-task-list');
 
 const tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
 
+function atualizarTarefa(){
+    localStorage.setItem('tarefas', JSON.stringify(tarefas));
+}
+
 function createTask(tarefa){
     const li = document.createElement('li');
     li.classList.add('app__section-task-list-item');
@@ -28,6 +32,8 @@ function createTask(tarefa){
     botao.onclick = () =>{
        const taskChanged = prompt("Qual é o novo nome da tarefa?")
        paragrafo.textContent = taskChanged;
+       tarefa.descricao = taskChanged;
+       atualizarTarefa();
     }
 
     const botaoImg = document.createElement('img');
@@ -55,7 +61,7 @@ formTasks.addEventListener('submit', (evento) =>{
     ulTasks.append(elementoTarefa)
     textArea.value = "";
     formTasks.classList.add('hidden');
-    localStorage.setItem('tarefas', JSON.stringify(tarefas));
+    atualizarTarefa()
 });
 
 tarefas.forEach(tarefa => { /*para garantir que a tarefa seja adicionada à lista tanto quando o botão for clicado quanto quando a página for recarregada.*/ 
