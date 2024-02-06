@@ -31,9 +31,14 @@ function createTask(tarefa){
 
     botao.onclick = () =>{
        const taskChanged = prompt("Qual é o novo nome da tarefa?")
-       paragrafo.textContent = taskChanged;
-       tarefa.descricao = taskChanged;
-       atualizarTarefa();
+       if(!taskChanged){
+        console.log('nova tarefa: ' + taskChanged)
+        return;
+       }else{
+        paragrafo.textContent = taskChanged;
+        tarefa.descricao = taskChanged;
+        atualizarTarefa();
+       }
     }
 
     const botaoImg = document.createElement('img');
