@@ -3,12 +3,15 @@ const formTasks = document.querySelector('.app__form-add-task');
 const textArea = document.querySelector('.app__form-textarea');
 const taskArea = document.querySelector('.tasks');
 const ulTasks = document.querySelector('.app__section-task-list');
-const btnCancel = document.querySelector('.app__form-footer__button app__form-footer__button--cancel')
-
 const tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
 
 function atualizarTarefa(){
     localStorage.setItem('tarefas', JSON.stringify(tarefas));
+}
+
+function CancelarTask(){
+    textArea.value = "";
+    formTasks.classList.add('hidden');
 }
 
 function createTask(tarefa){
@@ -56,11 +59,6 @@ function createTask(tarefa){
 btnAddTask.addEventListener('click', () =>{
     formTasks.classList.toggle('hidden')
 });
-
-function cancelarTask(){
-  console.log('jean')
-}
-btnCancel.addEventListener('click', cancelarTask);
 
 formTasks.addEventListener('submit', (evento) =>{
     evento.preventDefault(); //vai prevenir o comportamento padrão do navegador.
