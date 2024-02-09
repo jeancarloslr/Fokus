@@ -3,6 +3,8 @@ const formTasks = document.querySelector('.app__form-add-task');
 const textArea = document.querySelector('.app__form-textarea');
 const taskArea = document.querySelector('.tasks');
 const ulTasks = document.querySelector('.app__section-task-list');
+const paragrafoDescricaoTarefa = document.querySelector('.app__section-active-task-description')
+
 const tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
 
 function atualizarTarefa(){
@@ -36,7 +38,7 @@ function createTask(tarefa){
     botao.onclick = () =>{
        const taskChanged = prompt("Qual é o novo nome da tarefa?")
        if(!taskChanged){
-        console.log('nova tarefa: ' + taskChanged)
+        //console.log('nova tarefa: ' + taskChanged)
         return;
        }else{
         paragrafo.textContent = taskChanged;
