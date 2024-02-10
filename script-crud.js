@@ -3,7 +3,7 @@ const formTasks = document.querySelector('.app__form-add-task');
 const textArea = document.querySelector('.app__form-textarea');
 const taskArea = document.querySelector('.tasks');
 const ulTasks = document.querySelector('.app__section-task-list');
-const paragrafoDescricaoTarefa = document.querySelector('.app__section-active-task-description')
+const paragrafoDescricaoTarefa = document.querySelector('.app__section-active-task-description');
 
 const tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
 
@@ -55,6 +55,10 @@ function createTask(tarefa){
     li.append(paragrafo);
     li.append(botao);
 
+    li.onclick = () =>{
+        paragrafoDescricaoTarefa.textContent = tarefa.descricao;
+        li.classList.add('.app__section-task-list-item-active.app')
+    }
     return li;
 } 
 
