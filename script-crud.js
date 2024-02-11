@@ -57,7 +57,11 @@ function createTask(tarefa){
 
     li.onclick = () =>{
         paragrafoDescricaoTarefa.textContent = tarefa.descricao;
-        li.classList.add('.app__section-task-list-item-active.app')
+        document.querySelectorAll('app__section-task-list-item-active')
+          .forEach(elemento => {
+           elemento.classList.remove('app__section-task-list-item-active')
+        })
+        li.classList.add('app__section-task-list-item-active');
     }
     return li;
 } 
