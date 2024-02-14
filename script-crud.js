@@ -55,22 +55,20 @@ function createTask(tarefa){
     li.append(paragrafo);
     li.append(botao);
 
-    li.onclick = () =>{
-        paragrafoDescricaoTarefa.textContent = tarefa.descricao;
-        var allTasks = document.querySelectorAll('app__section-task-list-item-active')
-        console.log(allTasks)
-          allTasks.forEach(function(){
-           allTasks.classList.remove('app__section-task-list-item-active')
-        });
-        li.classList.add('app__section-task-list-item-active');
+    li.onclick = () => {
+        paragrafoDescricaoTarefa.textContent = tarefa.descricao
+        document.querySelectorAll('.app__section-task-list-item-active')
+        .forEach(elemento => {
+          elemento.classList.remove('app__section-task-list-item-active')
+        })
+        li.classList.add('app__section-task-list-item-active')
     }
+
     return li;
 } 
-
 btnAddTask.addEventListener('click', () =>{
     formTasks.classList.toggle('hidden')
-});
-
+})
 formTasks.addEventListener('submit', (evento) =>{
     evento.preventDefault(); //vai prevenir o comportamento padrão do navegador.
     const tarefa = {
