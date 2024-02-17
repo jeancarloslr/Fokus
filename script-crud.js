@@ -86,3 +86,7 @@ tarefas.forEach(tarefa => { /*para garantir que a tarefa seja adicionada à list
     const elementoTarefa = createTask(tarefa);
     ulTasks.append(elementoTarefa);
 });
+
+document.addEventListener("FocoFinalizado") = () =>{
+    
+}
