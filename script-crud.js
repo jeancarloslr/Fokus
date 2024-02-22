@@ -63,7 +63,6 @@ function createTask(tarefa){
         })
         li.classList.add('app__section-task-list-item-active')
     }
-
     return li;
 } 
 btnAddTask.addEventListener('click', () =>{
@@ -87,6 +86,7 @@ tarefas.forEach(tarefa => { /*para garantir que a tarefa seja adicionada à list
     ulTasks.append(elementoTarefa);
 });
 
-document.addEventListener("FocoFinalizado") = () =>{
-    
-}
+document.addEventListener("FocoFinalizado", () => {
+  if(){
+  }  
+})
