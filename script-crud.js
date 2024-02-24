@@ -4,9 +4,11 @@ const textArea = document.querySelector('.app__form-textarea');
 const taskArea = document.querySelector('.tasks');
 const ulTasks = document.querySelector('.app__section-task-list');
 const paragrafoDescricaoTarefa = document.querySelector('.app__section-active-task-description');
+let buttonDisable = null;
 
 const tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
 let tarefaSelecionada = null;
+let litarefaSelecionada = null;
 
 function atualizarTarefa(){
     localStorage.setItem('tarefas', JSON.stringify(tarefas));
@@ -37,6 +39,7 @@ function createTask(tarefa){
     botao.classList.add('app_button-edit');
 
     botao.onclick = () =>{
+       buttonDisable = botao;
        const taskChanged = prompt("Qual é o novo nome da tarefa?")
        if(!taskChanged){
         //console.log('nova tarefa: ' + taskChanged)
@@ -64,9 +67,11 @@ function createTask(tarefa){
         if(tarefaSelecionada == tarefa){
             paragrafoDescricaoTarefa.textContent = "";
             tarefaSelecionada = null;
+            litarefaSelecionada = null;
             return;
         }
         tarefaSelecionada = tarefa;
+        litarefaSelecionada = li;
         paragrafoDescricaoTarefa.textContent = tarefa.descricao
         li.classList.add('app__section-task-list-item-active')
     }
@@ -94,5 +99,8 @@ tarefas.forEach(tarefa => { /*para garantir que a tarefa seja adicionada à list
 });
 
 document.addEventListener("FocoFinalizado", () => {
-
+    if(tarefaSelecionada){
+        litarefaSelecionada.classList.remove("app__section-task-list-item-active");
+        litarefaSelecionada.classList.add('app__section-task-list-item-complete');
+    }
 })
