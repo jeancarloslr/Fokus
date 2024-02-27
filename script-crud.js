@@ -19,6 +19,7 @@ function CancelarTask(){
     formTasks.classList.add('hidden');
 }
 
+
 function createTask(tarefa){
     const li = document.createElement('li');
     li.classList.add('app__section-task-list-item');
@@ -99,8 +100,9 @@ tarefas.forEach(tarefa => { /*para garantir que a tarefa seja adicionada à list
 });
 
 document.addEventListener("FocoFinalizado", () => {
-    if(tarefaSelecionada){
+    if(tarefaSelecionada && litarefaSelecionada){
         litarefaSelecionada.classList.remove("app__section-task-list-item-active");
         litarefaSelecionada.classList.add('app__section-task-list-item-complete');
+        litarefaSelecionada.querySelector('button').setAttribute('disabled', 'true');
     }
 })
