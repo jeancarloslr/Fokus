@@ -1,3 +1,4 @@
+
 const btnAddTask = document.querySelector('.app__button--add-task');
 const formTasks = document.querySelector('.app__form-add-task');
 const textArea = document.querySelector('.app__form-textarea');
@@ -7,6 +8,7 @@ const paragrafoDescricaoTarefa = document.querySelector('.app__section-active-ta
 let buttonDisable = null;
 
 const tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
+
 let tarefaSelecionada = null;
 let litarefaSelecionada = null;
 
@@ -59,39 +61,44 @@ function createTask(tarefa){
     li.append(paragrafo);
     li.append(botao);
 
-    if(tarefa.completa){
-        litarefaSelecionada.classList.add('app__section-task-list-item-complete');
-        botao.setAttribute('disabled', 'true');
-    }else{
-        li.onclick = () => {
-        document.querySelectorAll('.app__section-task-list-item-active')
-        .forEach(elemento => {
-          elemento.classList.remove('app__section-task-list-item-active')
-        })
-        if(tarefaSelecionada == tarefa){
-            paragrafoDescricaoTarefa.textContent = "";
-            tarefaSelecionada = null;
-            litarefaSelecionada = null;
-            return;
-        }
-        tarefaSelecionada = tarefa;
-        litarefaSelecionada = li;
-        paragrafoDescricaoTarefa.textContent = tarefa.descricao
-        li.classList.add('app__section-task-list-item-active');
+   // código omitido
+    if (tarefa.completa){
+    li.classList.add('app__section-task-list-item-complete')
+    botao.setAttribute('disabled', 'disabled')
+    } else {
+    li.onclick = () => {
+    document.querySelectorAll('.app__section-task-list-item-active')
+    .forEach(elemento => {
+    elemento.classList.remove('app__section-task-list-item-active')
+    })
+    if (tarefaSelecionada == tarefa) {
+    paragrafoDescricaoTarefa.textContent = ''
+    tarefaSelecionada = null
+    litarefaSelecionada = null
+    return
+    }
+    tarefaSelecionada = tarefa
+    litarefaSelecionada = li
+    paragrafoDescricaoTarefa.textContent = tarefa.descricao
+    
+    li.classList.add('app__section-task-list-item-active')
     }
     }
+    
     return li;
 } 
+
 btnAddTask.addEventListener('click', () =>{
     formTasks.classList.toggle('hidden')
 })
+
 formTasks.addEventListener('submit', (evento) =>{
     evento.preventDefault(); //vai prevenir o comportamento padrão do navegador.
     const tarefa = {
         descricao: textArea.value
     }
     tarefas.push(tarefa);
-    const elementoTarefa = createTask(tarefa)
+    const elementoTarefa = createTask(tarefa);
     ulTasks.append(elementoTarefa)
     textArea.value = "";
     formTasks.classList.add('hidden');
@@ -106,7 +113,7 @@ tarefas.forEach(tarefa => { /*para garantir que a tarefa seja adicionada à list
 document.addEventListener("FocoFinalizado", () => {
     if(tarefaSelecionada && litarefaSelecionada){
         litarefaSelecionada.classList.remove("app__section-task-list-item-active");
-        tarefaSelecionada.completa = true
+        tarefaSelecionada.completa = true;
         atualizarTarefa();
     } 
-})
+});
